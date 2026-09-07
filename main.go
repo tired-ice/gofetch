@@ -8,15 +8,18 @@ import (
 
 func main() {
 
-	fmt.Println("Gofetch")
-	fmt.Println("OS:", runtime.GOOS)
-	fmt.Println("Architecture:", runtime.GOARCH)
-
 	hostname, err := os.Hostname()
 
+	user := os.Getenv("USER")
+
 	if err != nil {
-		fmt.Println("Hostname: unknown")
+		fmt.Println("Error retrieving hostname:", err)
 	} else {
-		fmt.Println("Hostname:", hostname)
+		fmt.Printf("%s@%s\n", user, hostname)
+
 	}
+
+	fmt.Println("------------------------------")
+	fmt.Println("OS:", runtime.GOOS)
+	fmt.Println("Architecture:", runtime.GOARCH)
 }
