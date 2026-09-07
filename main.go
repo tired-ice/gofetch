@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"runtime"
 )
 
@@ -21,5 +22,15 @@ func main() {
 
 	fmt.Println("------------------------------")
 	fmt.Println("OS:", runtime.GOOS)
+
+	cmd := exec.Command("uname", "-r")
+	kernel, err := cmd.Output()
+
+	if err != nil {
+		fmt.Println("Error retrieving kernel version:", err)
+	} else {
+		fmt.Printf("Kernel: %s", kernel)
+	}
+
 	fmt.Println("Architecture:", runtime.GOARCH)
 }
